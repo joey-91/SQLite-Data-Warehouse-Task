@@ -3,7 +3,7 @@
 
 # Database Schema
 
-![alt text](diagrams/schema.png "Title")
+![alt text](https://github.com/joey-91/SQLite-Data-Warehouse-Task/blob/main/diagrams/schema.PNG)
 
 
 # Methodology
