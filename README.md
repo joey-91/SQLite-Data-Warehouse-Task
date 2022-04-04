@@ -1,7 +1,7 @@
 # Data Warehousing task
 
 
-# Pipeline Overview
+# Database Schema
 
 ![alt text](diagrams/schema.png "Title")
 
