@@ -1,4 +1,4 @@
-# Data Warehousing tasks
+# Data Warehousing task
 
 
 # Pipeline Overview
