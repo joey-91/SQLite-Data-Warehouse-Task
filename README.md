@@ -1,6 +1,3 @@
-# Data Warehousing task
-
-
 # Database Schema
 
 ![alt text](https://github.com/joey-91/SQLite-Data-Warehouse-Task/blob/main/diagrams/schema.PNG)
