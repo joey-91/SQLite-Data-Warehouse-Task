@@ -32,6 +32,7 @@ if df is not None:
         existing_products = pd.read_sql_query("SELECT * FROM product", conn)
         new_products_df = new_values(df, existing_products, product_key, product_columns)
         new_products_df.to_sql('product', con=conn, if_exists='append', index=False)
+        print(len(new_products_df), 'new records added to product table')
         # print(pd.read_sql_query("SELECT * FROM product", conn))
     except:
         print("couldn't update product lookup")
@@ -43,6 +44,7 @@ if df is not None:
         existing_delivery = pd.read_sql_query("SELECT * FROM delivery", conn)
         new_delivery_df = new_values(df, existing_delivery, delivery_key, delivery_columns)
         new_delivery_df.to_sql('delivery', con=conn, if_exists='append', index=False)
+        print(len(new_delivery_df), 'new records added to delivery table')
         # print(pd.read_sql_query("SELECT * FROM delivery", conn))
     except:
         print("couldn't update delivery lookup")
@@ -85,6 +87,7 @@ if df is not None:
         fact_table = pd.read_sql_query("SELECT * FROM fact", conn)
         new_orders_df = new_values(fact_formatted, fact_table, fact_key, fact_formatted.columns)
         new_orders_df.to_sql('fact', con=conn, if_exists='append', index=False)
-        print(pd.read_sql_query("SELECT * FROM fact", conn))
+        print(len(new_orders_df), 'new records added to fact table')
+        # print(pd.read_sql_query("SELECT * FROM fact", conn))
     except:
         print("couldn't upload to fact table")
