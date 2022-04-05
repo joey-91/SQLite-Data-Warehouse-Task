@@ -66,12 +66,11 @@ if df is not None:
 
             FROM staging
 
-            INNER JOIN delivery
+            LEFT JOIN delivery
             ON staging.DeliveryPostcode = delivery.DeliveryPostcode
 
-            INNER JOIN product
+            LEFT JOIN product
             ON staging.ProductName = product.ProductName
-
 
             """, 
             conn
@@ -79,7 +78,11 @@ if df is not None:
     except:
         print("couldn't read from one of the tables")
 
-    assert len(fact_formatted) <= len(df), 'a one-to-many join has occured'
+
+    assert len(fact_formatted) == len(df), 'a one-to-many join has occured'
+    assert fact_formatted['DeliveryId'].isnull().sum() == 0, "the delivery lookup hasn't updated correctly"
+    assert fact_formatted['ProductId'].isnull().sum() == 0, "the product lookup hasn't updated correctly"
+    assert fact_formatted['OrderNumber'].isnull().sum() == 0, "data contains null-value product IDs"
 
     try:
         # update fact table
