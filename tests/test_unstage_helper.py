@@ -1,5 +1,5 @@
 import unittest
-from helpers import unstage
+from helpers import scd
 import pandas as pd
 from pandas._testing import assert_frame_equal
 
@@ -40,9 +40,9 @@ input_df = pd.DataFrame(
 
 
 class TestUnstageFunction(unittest.TestCase):
-    def test_unstage_helper(self):
+    def test_scd(self):
 
-        func_output = unstage.new_values(input_df, product_lookup, product_key, product_columns)
+        func_output = scd.new_values(input_df, product_lookup, product_key, product_columns)
 
         expected_output = pd.DataFrame(
             [
