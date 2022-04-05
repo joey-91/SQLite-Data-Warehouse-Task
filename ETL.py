@@ -1,7 +1,7 @@
 import pandas as pd
 import sqlite3
 from helpers.cleaning import clean_df
-from helpers.unstage import new_values
+from helpers.scd import new_values
 
 
 conn = sqlite3.connect('test_database') 
@@ -29,8 +29,8 @@ if df is not None:
         # update product lookup
         product_columns = ['ProductName', 'ProductType', 'UnitPrice']
         product_key = 'ProductName'
-        product_lookup = pd.read_sql_query("SELECT * FROM product", conn)
-        new_products_df = new_values(df, product_lookup, product_key, product_columns)
+        existing_products = pd.read_sql_query("SELECT * FROM product", conn)
+        new_products_df = new_values(df, existing_products, product_key, product_columns)
         new_products_df.to_sql('product', con=conn, if_exists='append', index=False)
         # print(pd.read_sql_query("SELECT * FROM product", conn))
     except:
@@ -40,8 +40,8 @@ if df is not None:
         # update delivery lookup
         delivery_columns = ['ClientName', 'DeliveryAddress', 'DeliveryCity', 'DeliveryPostcode', 'DeliveryCountry', 'DeliveryContactNumber']
         delivery_key = 'DeliveryAddress'
-        delivery_lookup = pd.read_sql_query("SELECT * FROM delivery", conn)
-        new_delivery_df = new_values(df, delivery_lookup, delivery_key, delivery_columns)
+        existing_delivery = pd.read_sql_query("SELECT * FROM delivery", conn)
+        new_delivery_df = new_values(df, existing_delivery, delivery_key, delivery_columns)
         new_delivery_df.to_sql('delivery', con=conn, if_exists='append', index=False)
         # print(pd.read_sql_query("SELECT * FROM delivery", conn))
     except:
