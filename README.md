@@ -10,7 +10,7 @@ I have chosen a STAR schema model for this database, with a fact table and 2 dim
 
 # Running Pipeline
 
-This task is run from the ETL.py script
+This process is run from the ETL.py script. I have left commented out print statements so you can easily view the tables being updated at each stage of the code.
 
 
 #  Slowly Changing Dimensions
